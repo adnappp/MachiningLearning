@@ -1,0 +1,12 @@
+clear;
+clc;
+mu1=[5 5];
+n=200;
+sigma1=[0.5 0;0 0.5];
+testData=mvnrnd(mu1,sigma1,n);
+labels=bayes(testData);
+labels=labels';
+testData=[testData,labels];
+subplot(1,2,2);
+plot(testData(testData(:,3)==1,1),testData(testData(:,3)==1,2),'ro',testData(testData(:,3)==2,1),testData(testData(:,3)==2,2),'b*');
+title('ͼ2');

@@ -1,0 +1,36 @@
+function[w,b]=perceptionLearning(trainData,trainLabel,studyRate)
+[nums,demens]=size(trainData);
+w=zeros(1,demens);
+b=0;
+for i=1:nums
+    flag=(trainData(i,:)*w'+b)*trainLabel(i);
+    if flag<=0
+        w=w+studyRate*trainLabel(i)*trainData(i,:);
+        b=b+studyRate*trainLabel(i);
+    end
+end
+%可视化
+color = {'r.', 'g.', 'm.', 'b.', 'k.', 'y.'}; 
+if demens==2
+    subplot(1,1,1);
+    plot(trainData(trainLabel==1,1),trainData(trainLabel==1,2),char(color(2)));
+    hold on;
+    plot(trainData(trainLabel==-1,1),trainData(trainLabel==-1,2),char(color(2)));
+    hold on;
+    x=linspace(0,10,5000);
+    y=(-b-w(1)*x)/w(2);
+    plot(x,y,'r');
+    title('训练数据');    
+elseif demens==3
+    subplot(1,2,1);
+    for i=1:K
+        plot(trainData(trainLabel==i,1),trainData(trainLabel==i,2),trainData(trainLabel==i,3),char(color(i)));
+        hold on;
+    end
+    title('训练数据');
+    subplot(1,2,2);
+    
+else
+    disp('维度不符合画图标准（1维的懒得画），咱就不画啦');
+end
+end

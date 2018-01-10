@@ -11,4 +11,5 @@ r2=mvnrnd(mu2,sigma2,n);
 trainData=[r1;r2];
 trainLabel=[ones(100,1);-1*ones(100,1)];
 studyRate=0.7;
-[w,b]=perceptionLearning(trainData,trainLabel,studyRate);
+%[w,b]=perceptionLearning(trainData,trainLabel,studyRate);
+[w]=leastSquares(trainData,trainLabel);

@@ -1,1 +1,2 @@
-# MachiningLearning
+# 帮助
+各文件夹都有写test方法，下载解压后运行test方法即可。
